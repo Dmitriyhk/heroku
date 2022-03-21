@@ -24,7 +24,7 @@ const JoinBlock = () => {
     dispatch(photoLoad());
   }, []);
 
-  async function onEnter() {
+  function onEnter() {
     dispatch(loaderOn());
     const name = randomName();
     if (!photo) {
@@ -34,13 +34,15 @@ const JoinBlock = () => {
       name,
       photo,
     });
-    await setTimeout(() => console.log(name),1000)
-    dispatch(userJoin(name, photo));
+    setTimeout(async () => {
+      dispatch(userJoin(name, photo));
     const { data } = await axios.get("/room");
     dispatch(userLoad(data.users));
     dispatch(messagesLoad(data.messages));
     dispatch(loaderOff());
     dispatch(joined());
+    },1000)
+    
   }
 
   return (
