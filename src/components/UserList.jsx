@@ -1,6 +1,15 @@
 import { useSelector } from "react-redux";
+import socket from "../socket";
 const UserList = () => {
-  const userList = useSelector((state) => state.usersListReducer.users);
+  let userList = useSelector((state) => state.usersListReducer.users);
+
+  const userName = useSelector((state) => state.userReducer.name);
+  const userPhoto = useSelector((state) => state.userReducer.photo);
+
+
+  if (userList[userList.length - 1].name !== userName && userList[userList.length - 1].photo !== userPhoto) {
+    socket.emit("USER:JOIN")
+  }
 
   return (
     <div className="chat-userList">
