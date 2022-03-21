@@ -3,31 +3,32 @@ const path = require('path');
 const port = process.env.PORT || 5000;
 const app = express();
 const server = require("http").Server(app);
+const INDEX = '/index.html';
 const io = require("socket.io")(server, {
   pingTimeout: 1000,
   maxHttpBufferSize: 1e8,
   pingInterval: 3000,
 });
 // path.join(__dirname, './build')
-app.use(express.static(__dirname));
- app.use(express.static(path.join(__dirname, 'build')));
-app.use(express.json());
+// app.use(express.static(__dirname));
+//  app.use(express.static(path.join(__dirname, 'build')));
+// app.use(express.json());
 
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
-// });
+app.use((req, res) => {
+  res.sendFile(INDEX, { root: 'build' });
+});
 
 app.listen(port, () => console.log('work'))
 
 
 
-if (process.env.NODE_ENV === "production") {
-  console.log('upwork')
-  app.use(express.json("build"));
-  // app.get("*", (req, res) => {
-  //   res.sendFile(path.resolve(__dirname,  "build", "index.html"));
-  // });
-}
+// if (process.env.NODE_ENV === "production") {
+//   console.log('upwork')
+//   app.use(express.json("build"));
+//   // app.get("*", (req, res) => {
+//   //   res.sendFile(path.resolve(__dirname,  "build", "index.html"));
+//   // });
+// }
 
 // app.get('/*', (req, res) => {
 //   res.sendFile(path.join(__dirname, './build', '/index.html'));
