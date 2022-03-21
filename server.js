@@ -1,3 +1,10 @@
+// const PORT = process.env.PORT || 3000;
+// const INDEX = '/index.html';
+// // const express = require("express");
+// const server = express()
+//   .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
+//   .listen(PORT, () => console.log(`Listening on ${PORT}`));
+
 const express = require("express");
 const path = require('path');
 const port = process.env.PORT || 3000;
@@ -72,7 +79,7 @@ io.on("connect", (socket) => {
     }
   });
 });
-app.listen(port, () => console.log('work'))
+// app.listen(port, () => console.log('work'))
 
 // server.listen(9999, (error) => {
 //   if (error) {
