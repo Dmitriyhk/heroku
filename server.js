@@ -79,7 +79,7 @@ io.on("connect", (socket) => {
     }
   });
 });
-// app.listen(port, () => console.log('work'))
+app.listen(port, () => console.log('work'))
 
 // server.listen(9999, (error) => {
 //   if (error) {
