@@ -1,11 +1,17 @@
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import socket from "../socket";
 const UserList = () => {
   let userList = useSelector((state) => state.usersListReducer.users);
-
-  let length = userList
+  const [test, setTest] = useState([])
+  useEffect(() => {
+    socket.on("USER:JOINED", (name) => {
+      setTest(name)
+    });
+  }, [])
+  console.log('arr', test)
+  console.log('userList', userList)
   
   console.log('userList >>>', userList)
   return (
