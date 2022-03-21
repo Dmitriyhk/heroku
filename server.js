@@ -29,7 +29,8 @@ io.on("connect", (socket) => {
     socket.join();
     room.get("users").set(socket.id, { name, photo });
     const users = [...room.get("users").values()];
-    socket.emit("USER:JOINED", users);
+    socket.broadcast.emit("USER:JOINED", users);
+    socket.emit("USER:TEST", users)
   });
   console.log("user connected > ", socket.id);
   socket.on("ROOM:NEW_MESSAGE", ({ userName, userPhoto, text, img }) => {

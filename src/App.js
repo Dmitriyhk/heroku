@@ -10,9 +10,9 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    socket.on("USER:JOINED", (name) => {
-      dispatch(userLoad(name));
-    });
+    // socket.on("USER:JOINED", (name) => {
+    //   dispatch(userLoad(name));
+    // });
     socket.on("ROOM:NEW_MESSAGE", (messages) => {
       const { userName, userPhoto, text, img } = messages;
       dispatch(newMessage(userName, userPhoto, text, img));
