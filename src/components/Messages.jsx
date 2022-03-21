@@ -27,7 +27,7 @@ const Messages = () => {
       )}
       <div ref={messagesRef} className="chat-messages">
         <div className="messages">
-          {messageList.map((message, index) => (
+          {messageList && messageList.map((message, index) => (
             <div
               key={message.userName + index}
               className={

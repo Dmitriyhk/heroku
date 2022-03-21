@@ -5,7 +5,7 @@ const UserList = () => {
   return (
     <div className="chat-userList">
       <p className="chat-userList__header">Онлайн: {userList.length}</p>
-      {userList.map((user, index) => {
+      {userList && userList.map((user, index) => {
         return (
           <div key={user.name + index} className="userList-user">
             <img className="userList-user__photo" src={user.photo} />
