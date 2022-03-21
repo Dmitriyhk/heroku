@@ -1,33 +1,29 @@
 const express = require("express");
 const path = require('path');
-const PORT = process.env.PORT || 9999;
+const port = process.env.PORT || 5000;
 const app = express();
 const server = require("http").Server(app);
-const INDEX = '/index.html';
 const io = require("socket.io")(server, {
   pingTimeout: 1000,
   maxHttpBufferSize: 1e8,
   pingInterval: 3000,
 });
 // path.join(__dirname, './build')
-// app.use(express.static(__dirname));
-//  app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(__dirname));
+ app.use(express.static(path.join(__dirname, 'build')));
 app.use(express.json());
 
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// });
 
-
-
+app.listen(port, () => console.log('work'))
 
 
 
 if (process.env.NODE_ENV === "production") {
   console.log('upwork')
   app.use(express.json("build"));
-  // app.use((req, res) => {
-  //   res.sendFile(path.resolve(__dirname,  "build", "index.html"));
-  // });
-
-  // server.listen(PORT, () => console.log('work'))
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname,  "build", "index.html"));
   });
@@ -79,10 +75,10 @@ io.on("connect", (socket) => {
     }
   });
 });
-server.listen(PORT, () => console.log('work'))
-// server.listen(9999, (error) => {
-//   if (error) {
-//     throw Error(error);
-//   }
-//   console.log("Сервер запущен!");
-// });
+
+server.listen(9999, (error) => {
+  if (error) {
+    throw Error(error);
+  }
+  console.log("Сервер запущен!");
+});
