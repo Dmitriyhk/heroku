@@ -15,7 +15,7 @@ import socket from "../socket";
 
 const JoinBlock = () => {
   const dispatch = useDispatch();
-  
+
   let photo = useSelector((state) => {
     return state.photoReducer.photo;
   });
@@ -34,6 +34,7 @@ const JoinBlock = () => {
       name,
       photo,
     });
+    await setTimeout(() => console.log(name),1000)
     dispatch(userJoin(name, photo));
     const { data } = await axios.get("/room");
     dispatch(userLoad(data.users));
