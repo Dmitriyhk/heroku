@@ -15,7 +15,7 @@ app.use(express.json(path.join(__dirname, './build')));
 //   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 // });
 
-// app.listen(port, () => console.log('work'))
+app.listen(port, () => console.log('work'))
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("build"));
