@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require('path');
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 9999;
 const app = express();
 const server = require("http").Server(app);
 const INDEX = '/index.html';
@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname,  "build", "index.html"));
   });
 
-  app.listen(PORT, () => console.log('work'))
+  // server.listen(PORT, () => console.log('work'))
   // app.get("*", (req, res) => {
   //   res.sendFile(path.resolve(__dirname,  "build", "index.html"));
   // });
@@ -79,10 +79,10 @@ io.on("connect", (socket) => {
     }
   });
 });
-
-server.listen(9999, (error) => {
-  if (error) {
-    throw Error(error);
-  }
-  console.log("Сервер запущен!");
-});
+server.listen(PORT, () => console.log('work'))
+// server.listen(9999, (error) => {
+//   if (error) {
+//     throw Error(error);
+//   }
+//   console.log("Сервер запущен!");
+// });
