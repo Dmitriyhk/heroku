@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import socket from "../socket";
 const UserList = () => {
   let userList = useSelector((state) => state.usersListReducer.users);
-  
+  console.log('userList >>>', userList)
   return (
     <div className="chat-userList">
       <p className="chat-userList__header">Онлайн: {userList && userList.length}</p>
