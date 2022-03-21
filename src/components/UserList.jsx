@@ -4,7 +4,7 @@ const UserList = () => {
 
   return (
     <div className="chat-userList">
-      <p className="chat-userList__header">Онлайн: {userList.length}</p>
+      <p className="chat-userList__header">Онлайн: {userList && userList.length}</p>
       {userList && userList.map((user, index) => {
         return (
           <div key={user.name + index} className="userList-user">
