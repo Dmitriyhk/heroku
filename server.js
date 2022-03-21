@@ -11,22 +11,24 @@ const io = require("socket.io")(server, {
   pingInterval: 3000,
 });
 // path.join(__dirname, './build')
-app.use(express.static(__dirname));
-app.use(express.static(path.join(__dirname, 'build')));
-app.use(express.json());
+// app.use(express.static(__dirname));
+// app.use(express.static(path.join(__dirname, 'build')));
+// app.use(express.json());
+
+app.use(express.static(__dirname + '/build'))
 
 // app.get('*', (req, res) => {
 //   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 // });
 
 
-if (process.env.NODE_ENV === "production") {
-  console.log('')
-  app.use(express.json("build"));
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname,  "build", "index.html"));
-  });
-}
+// if (process.env.NODE_ENV === "production") {
+//   console.log('')
+//   app.use(express.json("build"));
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.resolve(__dirname,  "build", "index.html"));
+//   });
+// }
 
 // app.get('/*', (req, res) => {
 //   res.sendFile(path.join(__dirname, './build', '/index.html'));
@@ -74,7 +76,7 @@ io.on("connect", (socket) => {
     }
   });
 });
-app.listen(port, () => console.log('work'))
+server.listen(port, () => console.log('work'))
 
 // server.listen(9999, (error) => {
 //   if (error) {
