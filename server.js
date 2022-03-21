@@ -9,6 +9,17 @@ const server = express()
   .use((req, res) => res.sendFile(path.join(__dirname, 'build', 'index.html')))
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
+server.use(express.static(__dirname));
+server.use(express.static(path.join(__dirname, 'build')));
+
+server.get('/ping', function (req, res) {
+  return res.send('pong');
+ });
+
+ server.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
+
 const io = socketIO(server);
 
 io.on('connection', (socket) => {
