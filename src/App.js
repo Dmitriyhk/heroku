@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { io } from "socket.io-client";
 import Chat from "./Chat";
 import JoinBlock from "./components/JoinBlock";
 import Spin from "./components/Spin";
@@ -9,13 +8,6 @@ import socket from "./socket";
 
 const App = () => {
   const dispatch = useDispatch();
-
-  let socket = io();
-      let el;
-
-      socket.on('time', (timeString) => {
-        console.log('Server time: ' + timeString);
-      });
 
   useEffect(() => {
     socket.on("USER:JOINED", (name) => {
