@@ -23,14 +23,14 @@ app.use(express.json());
 if (process.env.NODE_ENV === "production") {
   console.log('upwork')
   app.use(express.json("build"));
-  app.use((req, res) => {
-    res.sendFile(path.resolve(__dirname,  "build", "index.html"));
-  });
-
-  // server.listen(PORT, () => console.log('work'))
-  // app.get("*", (req, res) => {
+  // app.use((req, res) => {
   //   res.sendFile(path.resolve(__dirname,  "build", "index.html"));
   // });
+
+  // server.listen(PORT, () => console.log('work'))
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname,  "build", "index.html"));
+  });
 }
 
 // app.get('/*', (req, res) => {
