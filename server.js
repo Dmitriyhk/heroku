@@ -17,12 +17,9 @@ app.use(express.json());
 //   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 // });
 
-app.listen(port, () => console.log('work'))
-
-
 
 if (process.env.NODE_ENV === "production") {
-  console.log('upwork')
+  console.log('')
   app.use(express.json("build"));
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname,  "build", "index.html"));
@@ -75,10 +72,11 @@ io.on("connect", (socket) => {
     }
   });
 });
+app.listen(port, () => console.log('work'))
 
-server.listen(9999, (error) => {
-  if (error) {
-    throw Error(error);
-  }
-  console.log("Сервер запущен!");
-});
+// server.listen(9999, (error) => {
+//   if (error) {
+//     throw Error(error);
+//   }
+//   console.log("Сервер запущен!");
+// });
