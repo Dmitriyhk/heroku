@@ -16,6 +16,14 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => console.log('Client disconnected'));
 });
 
+if (process.env.NODE_ENV === "production") {
+    console.log('')
+    server.use(express.json("build"));
+    server.get("*", (req, res) => {
+      res.sendFile(path.resolve(__dirname,  "build", "index.html"));
+    });
+  }
+
 setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
 // const express = require("express");
