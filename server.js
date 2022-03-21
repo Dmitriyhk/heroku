@@ -1,38 +1,17 @@
 
 
 const express = require("express");
-const path = require('path');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 const app = express();
 const server = require("http").Server(app);
 const io = require("socket.io")(server, {
-  pingTimeout: 1000,
+  pingTimeout: 10000,
   maxHttpBufferSize: 1e8,
-  pingInterval: 3000,
+  pingInterval: 15000,
 });
-// path.join(__dirname, './build')
-// app.use(express.static(__dirname));
-// app.use(express.static(path.join(__dirname, 'build')));
-// app.use(express.json());
 
 app.use(express.static(__dirname + '/build'))
 
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
-// });
-
-
-// if (process.env.NODE_ENV === "production") {
-//   console.log('')
-//   app.use(express.json("build"));
-//   app.get("*", (req, res) => {
-//     res.sendFile(path.resolve(__dirname,  "build", "index.html"));
-//   });
-// }
-
-// app.get('/*', (req, res) => {
-//   res.sendFile(path.join(__dirname, './build', '/index.html'));
-// });
 
 const room = new Map([
   ["users", new Map()],
@@ -76,11 +55,6 @@ io.on("connect", (socket) => {
     }
   });
 });
+
 server.listen(port, () => console.log('work'))
 
-// server.listen(9999, (error) => {
-//   if (error) {
-//     throw Error(error);
-//   }
-//   console.log("Сервер запущен!");
-// });
