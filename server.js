@@ -11,15 +11,15 @@ const io = require("socket.io")(server, {
 
 app.use(express.json(path.join(__dirname, './build')));
 
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+// app.get('/*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// });
 
 app.listen(port, () => console.log('work'))
 
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, './build', '/index.html'));
-});
+// app.get('/*', (req, res) => {
+//   res.sendFile(path.join(__dirname, './build', '/index.html'));
+// });
 
 const room = new Map([
   ["users", new Map()],
