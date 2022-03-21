@@ -35,9 +35,7 @@ const JoinBlock = () => {
       photo,
     });
     dispatch(userJoin(name, photo));
-    const { data } = await axios.get("/room");
-    dispatch(userLoad(data.users));
-    dispatch(messagesLoad(data.messages));
+    
     dispatch(loaderOff());
     dispatch(joined());
   }
