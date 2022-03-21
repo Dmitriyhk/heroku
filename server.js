@@ -8,7 +8,7 @@ const io = require("socket.io")(server, {
   maxHttpBufferSize: 1e8
 });
 
-app.use(express.static(__dirname + '/build'))
+app.use(express.static(__dirname + '/build'));
 
 
 const room = new Map([
