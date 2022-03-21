@@ -7,9 +7,8 @@ const UserList = () => {
   const userPhoto = useSelector((state) => state.userReducer.photo);
 
 
-  if (userList[userList.length - 1].name !== userName && userList[userList.length - 1].photo !== userPhoto) {
     socket.emit("USER:JOIN")
-  }
+  
 
   return (
     <div className="chat-userList">
