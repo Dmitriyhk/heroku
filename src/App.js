@@ -1,10 +1,9 @@
-import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Chat from "./Chat";
 import JoinBlock from "./components/JoinBlock";
 import Spin from "./components/Spin";
-import { messagesLoad, newMessage, userLoad } from "./redux/actions";
+import { newMessage, userLoad } from "./redux/actions";
 import socket from "./socket";
 
 const App = () => {
@@ -19,15 +18,6 @@ const App = () => {
       dispatch(newMessage(userName, userPhoto, text, img));
     });
   }, []);
-
-  const test = async () => {
-    const { data } = await axios.get("/room");
-    dispatch(userLoad(data.users));
-    dispatch(messagesLoad(data.messages));
-  }
-  useEffect(() => {
-    test()
-})
 
 
 

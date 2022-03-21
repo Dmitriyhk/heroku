@@ -22,10 +22,6 @@ const JoinBlock = () => {
 
   useEffect(() => {
     dispatch(photoLoad());
-  }, []);
-
-  async function onEnter() {
-    dispatch(loaderOn());
     const name = randomName();
     if (!photo) {
       photo = 'replacement.png'
@@ -35,7 +31,15 @@ const JoinBlock = () => {
       photo,
     });
     dispatch(userJoin(name, photo));
+  }, []);
+
+  async function onEnter() {
+    dispatch(loaderOn());
     
+    
+    const { data } = await axios.get("/room");
+    dispatch(userLoad(data.users));
+    dispatch(messagesLoad(data.messages));
     dispatch(loaderOff());
     dispatch(joined());
   }
