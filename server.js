@@ -20,7 +20,7 @@ app.use(express.json());
 app.listen(port, () => console.log('work'))
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("build"));
+  app.use(express.json("build"));
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname,  "build", "index.html"));
   });
