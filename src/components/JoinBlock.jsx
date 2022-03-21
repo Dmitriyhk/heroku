@@ -27,6 +27,9 @@ const JoinBlock = () => {
   async function onEnter() {
     dispatch(loaderOn());
     const name = randomName();
+    if (!photo) {
+      photo = 'replacement.png'
+    };
     const userObj = {
       name,
       photo,

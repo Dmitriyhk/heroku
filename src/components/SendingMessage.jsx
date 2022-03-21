@@ -65,6 +65,7 @@ const SendingMessage = () => {
               value={imageInput}
               onChange={handleImageChange}
               type="file"
+              accept="image/jpeg,image/png,image/gif"
             />
           </label>
           <label className="sendingMessage-form__fileUpload">
