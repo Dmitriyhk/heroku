@@ -9,6 +9,8 @@ const io = require("socket.io")(server, {
   pingInterval: 3000,
 });
 // path.join(__dirname, './build')
+app.use(express.static(__dirname));
+ app.use(express.static(path.join(__dirname, 'build')));
 app.use(express.json());
 
 // app.get('*', (req, res) => {
