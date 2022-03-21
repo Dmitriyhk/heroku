@@ -5,9 +5,7 @@ const port = process.env.PORT || 3001;
 const app = express();
 const server = require("http").Server(app);
 const io = require("socket.io")(server, {
-  pingTimeout: 10000,
-  maxHttpBufferSize: 1e8,
-  pingInterval: 15000,
+  maxHttpBufferSize: 1e8
 });
 
 app.use(express.static(__dirname + '/build'))

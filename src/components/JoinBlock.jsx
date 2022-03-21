@@ -30,12 +30,11 @@ const JoinBlock = () => {
     if (!photo) {
       photo = 'replacement.png'
     };
-    const userObj = {
+    socket.emit("USER:JOIN", {
       name,
       photo,
-    };
+    });
     dispatch(userJoin(name, photo));
-    socket.emit("USER:JOIN", userObj);
     const { data } = await axios.get("/room");
     dispatch(userLoad(data.users));
     dispatch(messagesLoad(data.messages));
